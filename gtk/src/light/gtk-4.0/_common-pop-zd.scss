@@ -1,0 +1,133 @@
+
+/*******************
+ * PopZD Header bars *
+ *******************/
+
+$close_button_color_zd: mix(#FFAD00, #E56A54, 50%);
+$max_button_color_zd: mix(#82BF8C, #63B1BC, 50%);
+$min_button_color_zd: mix(#FEDB40, #FFAD00, 50%);
+
+/*****************
+ * Title buttons *
+ *****************/
+
+ windowcontrols {
+  border-spacing: 6px;
+
+  &:not(.empty) {
+    &.start:dir(ltr),
+    &.end:dir(rtl) {
+      margin-right: 7px;
+    }
+
+    &.start:dir(rtl),
+    &.end:dir(ltr) {
+      margin-left: 7px;
+    }
+  }
+
+  button {
+
+    background-image: none;
+
+    border-radius: 9999px;
+    padding: 2px;
+    margin: 0 2px;
+    min-width: 0;
+    min-height: 0;
+    border: none;
+    box-shadow: none;
+    transition-duration: 100ms;
+
+    &:hover {
+      background-image: none;
+      background-color: transparentize($color: $headerbar_fg_color, $amount: 0.5);
+      transition-duration: 100ms;
+    }
+
+    &:active,
+    &:checked {
+      background-image: none;
+      background-color: transparentize($color: $headerbar_fg_color, $amount: 0.7);
+      transition-duration: 100ms;
+    }
+    
+    &:backdrop {
+      background-image: none;
+      background-color: transparent;
+      transition-duration: 100ms;
+    }
+
+    &.close {
+      color: transparent;
+      background-color: $close_button_color_zd;
+      transition-duration: 100ms;
+
+      &:hover {
+        color: $headerbar_fg_color;
+        background-color: $close_button_color_zd;
+        transition-duration: 100ms;
+      }
+
+      &:active,
+      &:checked {
+        color: transparentize(black, 0.5);
+        background-color: darken($close_button_color_zd, 20%);
+        transition-duration: 100ms;
+      }
+
+      &:backdrop {
+        background-color: transparentize(white, 0.8);
+        transition-duration: 100ms;
+      }
+    }
+
+    &.maximize {
+      color: transparent;
+      background-color: $max_button_color_zd;
+      transition-duration: 100ms;
+
+      &:hover {
+        color: $headerbar_fg_color;
+        background-color: $max_button_color_zd;
+        transition-duration: 100ms;
+      }
+
+      &:active,
+      &:checked {
+        color: transparentize(black, 0.5);
+        background-color: darken($max_button_color_zd, 20%);
+        transition-duration: 100ms;
+      }
+
+      &:backdrop {
+        background-color: transparentize(white, 0.8);
+        transition-duration: 100ms;
+      }
+    }
+
+    &.minimize {
+      color: transparent;
+      background-color: $min_button_color_zd;
+      transition-duration: 100ms;
+
+      &:hover {
+        color: $headerbar_fg_color;
+        background-color: $min_button_color_zd;
+        transition-duration: 100ms;
+      }
+
+      &:active,
+      &:checked {
+        color: transparentize(black, 0.5);
+        background-color: darken($min_button_color_zd, 20%);
+        transition-duration: 100ms;
+      }
+
+      &:backdrop {
+        background-color: transparentize(white, 0.8);
+        transition-duration: 100ms;
+      }
+    }    
+  }
+}

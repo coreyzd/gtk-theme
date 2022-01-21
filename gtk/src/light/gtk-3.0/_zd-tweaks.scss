@@ -1,0 +1,138 @@
+// helper mixin for the zd titlebuttons
+@mixin draw_circleZD($c, $size:24px) {
+  $button_size: $size + 2px * 2;
+  $circle_size: 20px / $button_size / 2;
+
+  background-image: -gtk-gradient(radial,
+                                  center center, 0,
+                                  center center, $circle_size,
+                                  to($c),
+                                  to(transparent));
+
+  &:backdrop {
+      $_bg: transparentize(white, 0.8);
+      background-image: -gtk-gradient(radial,
+                                      center center, 0,
+                                      center center, $circle_size,
+                                      to($_bg),
+                                      to(transparent)); 
+   }
+
+  &:hover {
+  background-image: -gtk-gradient(radial,
+                                  center center, 0,
+                                  center center, $circle_size,
+                                  to($c),
+                                  to(transparent));
+
+    &:backdrop {
+      $_bg: transparentize(white, 0.8);
+      background-image: -gtk-gradient(radial,
+                                      center center, 0,
+                                      center center, $circle_size,
+                                      to($_bg),
+                                      to(transparent));
+     }
+  }
+
+  &:active {
+    $_bg: darken($c, 20%);
+    background-image: -gtk-gradient(radial,
+                                    center center, 0,
+                                    center center, $circle_size,
+                                    to($_bg),
+                                    to(transparent));
+    &:backdrop {
+      $_bg: transparentize($c, 0.5);
+      background-color: transparent;
+      border: transparent;
+      background-image: -gtk-gradient(radial,
+                                      center center, 0,
+                                      center center, $circle_size,
+                                      to($_bg),
+                                      to(transparent)); 
+     }
+  }
+}
+
+button.titlebutton {
+
+  &:not(.appmenu) {
+    padding: 4px;
+    margin: 0;
+    background-position: center; 
+    background-size: 28px 28px;
+  }
+
+  &:not(.close):not(.appmenu) {
+    color: transparent;
+
+    &:hover {
+      @include draw_circleZD($headerbar_bg_color);
+      color: $headerbar_fg_color;
+    }
+
+    &:active {
+      @include draw_circleZD($headerbar_bg_color);
+      color: transparentize(black, 0.5);
+    }
+
+    &:backdrop {
+      @include draw_circleZD(transparentize(white,0.8));
+    }
+  }
+
+  &.close {
+    $_close_button_color: mix(#FFAD00, #E56A54, 50%);
+    color: transparent;
+    @include draw_circleZD($_close_button_color);
+
+    &:hover {
+      @include draw_circleZD($_close_button_color);
+      color: $headerbar_fg_color;
+    }
+
+    &:active {
+      @include draw_circleZD($_close_button_color);
+      color: transparentize(black, 0.5);
+    }
+
+    &:backdrop {
+      @include draw_circleZD($_close_button_color);
+    }
+  }
+
+  &.maximize, &:not(.close):not(.appmenu):not(.minimize) {
+    $_max_button_color: mix(#82BF8C, #63B1BC, 50%);
+    @include draw_circleZD($_max_button_color);
+
+    &:hover {
+      @include draw_circleZD($_max_button_color);
+    }
+
+    &:active {
+      @include draw_circleZD($_max_button_color);
+    }
+
+    &:backdrop {
+      @include draw_circleZD($_max_button_color);
+    }
+  }
+
+  &.minimize, &:not(.close):not(.appmenu):not(.maximize) {
+    $_min_button_color: mix(#FEDB40, #FFAD00, 50%);
+    @include draw_circleZD($_min_button_color);
+
+    &:hover {
+      @include draw_circleZD($_min_button_color);
+    }
+
+    &:active {
+      @include draw_circleZD($_min_button_color);
+    }
+
+    &:backdrop {
+      @include draw_circleZD($_min_button_color);
+    }
+  }
+}
